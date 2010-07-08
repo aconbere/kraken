@@ -1,0 +1,19 @@
+#content {
+  width: 50%;
+}
+
+#todo-list {
+  list-style: none;
+  background-color: #eeefff;
+  min-height: 1em;
+}
+
+#todo-list li.default {
+  font-style: italic;
+}
+
+span.remove-button {
+  color: red;
+  padding-right: 5px;
+  cursor: pointer;
+}

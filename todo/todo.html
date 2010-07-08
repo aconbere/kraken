@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <!-- vendor files --> 
+    <script src="./vendor/jquery-1.4.2.js"></script>
+    <script src="./vendor/storage.js"></script>
+    <script src="./vendor/json2.js"></script>
+    <!-- kraken files -->
+    <script src="../lib/kraken.js"></script>
+    <script src="../lib/kraken/pubsub.js"></script>
+    <script src="../lib/kraken/controller.js"></script>
+    <script src="../lib/kraken/view.js"></script>
+    <script src="../lib/kraken/model.js"></script>
+    <!-- todo files -->
+    <script src="./app/todo.js"></script>
+    <script src="./app/controllers/todo_form_controller.js"></script>
+    <script src="./app/controllers/todo_list_controller.js"></script>
+    <script src="./app/views/todo_form_view.js"></script>
+    <script src="./app/views/todo_list_view.js"></script>
+    <script src="./app/models/todo_item.js"></script>
+
+    <link href="./public/css/base.css" type="text/css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="content">
+      <form id="todo-form">
+        <input type="text" class="new" name="new">
+        <input type="submit" value="new">
+      </form>
+
+      <div id="todo-wrapper">
+        <ul id="todo-list">
+          <li class="default">...add new tasks</li>
+          <!-- <li><span class="remove-button">x</span><span>Do this</span></li> -->
+        </ul>
+        <button id="clear">remove all</button>
+      </div>
+
+    </div>
+    <script>
+      Todo.start();
+    </script>
+  </body>
+</html>
