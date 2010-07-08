@@ -1,1 +1,0 @@
-var Estately = new Kraken();
