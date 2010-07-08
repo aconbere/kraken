@@ -1,15 +1,15 @@
 App Layout
 ==========
 
-my_app/
-..app/
-....controllers/
-......my_controller.js
-....models/
-......my_model.js
-....views/
-......my_view.js
-....my_app.js
+    my_app/
+    ..app/
+    ....controllers/
+    ......my_controller.js
+    ....models/
+    ......my_model.js
+    ....views/
+    ......my_view.js
+    ....my_app.js
 
 Applications
 ============
