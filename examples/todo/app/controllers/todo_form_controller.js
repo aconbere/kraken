@@ -5,7 +5,6 @@ Todo.controllers.TodoForm = function (context) {
 };
 
 Todo.controllers.TodoForm.prototype.newTask = function (value) {
-  //this.context.pubsub.publish("/tasks/new", new Todo.models.Task(value));
   var item = new Todo.models.Item({"value": value});
   this.context.pubsub.publish("/tasks/new", [item]);
 };

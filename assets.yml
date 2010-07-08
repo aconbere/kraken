@@ -1,2 +1,5 @@
-- "lib/kraken/event_listner"
-- "lib/kraken/evented"
+- "lib/kraken"
+- "lib/kraken/model"
+- "lib/kraken/view"
+- "lib/kraken/controller"
+- "lib/kraken/pubsub"

@@ -1,0 +1,64 @@
+App Layout
+==========
+
+my_app/
+..app/
+....controllers/
+......my_controller.js
+....models/
+......my_model.js
+....views/
+......my_view.js
+....my_app.js
+
+Applications
+============
+
+Applications are instances of Kraken.Core, they should be initialized in the app directory with any config parameters you want to hand off to the rest of your application. You can start your app by calling .start() on it. Which intiailized all controllers (handing them a context instance) and when done fires the "/app/start" event.
+
+    myApp = new MyApp({ x: 10 });
+
+    $(function () {
+      myApp.start();
+    });
+
+
+Controllers
+===========
+
+Controllers are Constructors attached to your application objects .controllers parameter. They will receive a context object on initialization from the application, which should contain any app local configuration. They are the gateways to "views", and are the only part of the application that communicates with the pubsub module.
+
+    myApp.controllers.HelloWorld = function (context) {
+      this.context = context;
+
+      var that = this;
+      this.context.pubsub.subscribe("/app/start", function () {
+        that.sayHello();
+      });
+    };
+
+    myApp.controllers.HelloWorld.prototype.sayHello = function () {
+      console.log("Hello World");
+    };
+
+
+Views
+=====
+
+Views are objects that provide and interface into manipulating browser DOM or other "impure" interfaces.
+
+
+Models
+======
+
+Models are instances of Kraken.objects.Model and simply data wrappers. This interface provides a global look up for model instances, and a set of callback methods for creation and destruction.
+
+    myApp.models.Greeting = Kraken.objects.Model.create(function (data) {
+      this.greeting = data.greeting;
+      this.creator = data.creator;
+      this.recipient = data.recipient;
+    });
+
+    myApp.models.Greeting.prototype.create = function () {
+      myApp.pubsub.publish("/greetings/new", [this]);
+    };
