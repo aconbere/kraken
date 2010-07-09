@@ -1,28 +1,32 @@
-Todo.views.TodoList = function (anchor, context) {
+Todo.views.TodoList = function (anchor) {
   console.log("Starting: views.TodoList");
   this.anchor = $(anchor);
-  this.context = context;
 
   var that = this;
-  this.clearButton = $("#clear");
-  this.clearButton.click(function () {
+
+  $("#clear").click(function () {
     that.clearTasks();
     return false;
   });
-  
+
+  this.bind("add", this.addTask);
+  this.bind("add", this.removeDefaultText);
+};
+
+Todo.views.TodoList.prototype = new Kraken.objects.View();
+
+Todo.views.TodoList.prototype.removeDefaultText = function () {
+  // if default el exits remove it
+  this.anchor.find(".default").remove();
 };
 
 Todo.views.TodoList.prototype.addTask = function (task) {
   var that = this;
-
-  // if default el exits remove it
-  this.anchor.find(".default").remove();
-
   var removeButton = $('<span class="remove-button">x</span>').click(function () {
-        taskEl.remove();
-        that.context.removeTask(task.id);
-        return false;
-      });
+    taskEl.remove();
+    that.trigger("remove", [taskEl.data("task")]);
+    return false;
+  });
 
   var text = $("<span>" + task.value + "</span>");
 
@@ -38,7 +42,7 @@ Todo.views.TodoList.prototype.clearTasks = function () {
   var that = this;
   this.anchor.find("li").each(function (i, el) {
     el = $(el);
-    that.context.removeTask(el.data("task"));
     el.remove();
+    that.trigger("remove", [el.data("task")]);
   });
 };

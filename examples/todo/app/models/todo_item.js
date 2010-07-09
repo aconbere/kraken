@@ -91,3 +91,8 @@ Todo.models.Item.prototype.toJSON = function () {
          , "id": this.id
          };
 };
+
+Todo.pubsub.subscribe("/app/start", function () {
+  console.log("app start");
+  Todo.models.Item._fill();
+});

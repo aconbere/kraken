@@ -7,17 +7,16 @@ Todo.controllers.TodoList = function (context) {
   var that = this;
 
   this.context.pubsub.subscribe("/app/start", function () {
-    Todo.models.Item._fill();
     var tasks = Todo.models.Item.all();
     var tl = tasks.length;
     for (var i = 0; i < tl; i++) {
-      that.views.TodoList.addTask(tasks[i]);
+      that.context.pubsub.publish("/tasks/new", [tasks[i]]);
     }
     
   });
 
   this.context.pubsub.subscribe("/tasks/new", function (task) {
-    that.views.TodoList.addTask(task);
+    that.views.TodoList.trigger("add", [task]);
   });
 };
 
