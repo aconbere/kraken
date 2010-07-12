@@ -2,7 +2,7 @@
 build :
 		echo "Building Kraken."
 		mkdir -p "build"
-		cat "lib/kraken.js" "lib/kraken/*" > "build/kraken.js"
+		cat lib/kraken.js lib/kraken/* > "build/kraken.js"
 		echo "Done, see build/kraken.js"
 
 .PHONY : clean
