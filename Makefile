@@ -2,7 +2,6 @@
 build :
 		echo "Building Kraken."
 		mkdir -p build
-		rm build/kraken.js
 		cat lib/kraken.js lib/kraken/* > build/kraken.js
 		echo "Done, see build/kraken.js"
 
