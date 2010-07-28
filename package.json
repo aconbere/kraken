@@ -1,0 +1,8 @@
+{ "name": "kraken"
+, "author": "Anders Conbere"
+, "homepage": "http://github.com/aconbere/kraken"
+, "description": "An evented client side framework"
+, "keywords": ["event", "evented"]
+, "version": "0.0.1"
+, "main": "./lib/kraken.js"
+}
