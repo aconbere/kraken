@@ -32,7 +32,7 @@ Controllers are Constructors attached to your application objects .controllers p
       this.context = context;
 
       var that = this;
-      this.context.pubsub.subscribe("/app/start", function () {
+      this.context.pubsub.bind("/app/start", function () {
         that.sayHello();
       });
     };
@@ -60,5 +60,5 @@ Models are instances of Kraken.objects.Model and simply data wrappers. This inte
     });
 
     myApp.models.Greeting.prototype.create = function () {
-      myApp.pubsub.publish("/greetings/new", [this]);
+      myApp.pubsub.trigger("/greetings/new", [this]);
     };
