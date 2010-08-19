@@ -5,17 +5,19 @@ var sys = require("sys");
 
 minitest.context("Kraken.Core", function () {
   this.setup(function () {
-    this.k = new Kraken.Core();
-    this.k.controllers.X = function () { this.name = "X" }
-    this.k.controllers.X.prototype = new Kraken.objects.Controller();
-    this.k.controllers.Y = function () { this.name = "Y" };
-    this.k.controllers.Y.prototype = new Kraken.objects.Controller();
+    var X = function () { this.name = "X" }
+    prototype = new Kraken.objects.Controller();
+
+    var Y = function () { this.name = "Y" };
+    Y.prototype = new Kraken.objects.Controller();
+
+    this.k = new Kraken.Core({ "controllers": { "X": X, "Y": Y } });
   });
   
   this.assertion("start should find a set of controllers and initialize them", function (test) {
     this.k.start();
-    assert.equal(this.k._controllers.X.name, "X");
-    assert.equal(this.k._controllers.Y.name, "Y");
+    assert.equal(this.k.controllers.X.name, "X");
+    assert.equal(this.k.controllers.Y.name, "Y");
     test.finished();
   });
 
