@@ -8,7 +8,7 @@ App Layout
     ....models/
     ......my_model.js
     ....views/
-    ......my_view.js
+    ......my_controller/my_view.js
     ....my_app.js
 
 Applications
